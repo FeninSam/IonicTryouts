@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Tamil Speech
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="isSpeechSupported()">Is Speech Supported</button>
+  <p>{{value}}</p>
+  <button ion-button (click)="speak()">Is speak Supported</button>
+  <p>{{translatedValue}}</p>
+</ion-content>
