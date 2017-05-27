@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-navbar>
     <ion-title>
       Tamil Speech
@@ -11,4 +11,25 @@
   <p>{{value}}</p>
   <button ion-button (click)="speak()">Is speak Supported</button>
   <p>{{translatedValue}}</p>
+</ion-content>-->
+
+
+
+<ion-content class="page">
+  <h1>Hindi Speech</h1>
+  <br>
+  <div class="loader" (click)="speak()"></div>
+  
+
+  <div class="bottom-container">
+    <!--<ion-item>
+      <ion-range [(ngModel)]="radius" #radiusVal min="40" max="300" color="primary" pin="true" snaps="true" step="20">
+      </ion-range>
+    </ion-item>-->
+    <ion-label color="secondary" id="lbl">Fence Parameter (Meters)</ion-label>
+   
+
+    <p >{{translatedValue}}</p>
+
+  </div>
 </ion-content>
