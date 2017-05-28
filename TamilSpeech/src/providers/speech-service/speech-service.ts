@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import {TextToSpeech,TTSOptions} from '@ionic-native/text-to-speech'
+import {TextToSpeech} from '@ionic-native/text-to-speech'
 import 'rxjs/add/operator/map';
 
 /*
@@ -11,19 +11,15 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SpeechServiceProvider {
-options:TTSOptions
   constructor(public http: Http,private tts:TextToSpeech) {
     console.log('Hello SpeechServiceProvider Provider');
   }
-convertToSpeech(text:string){
+convertToSpeech(text:string,toLang:string){
   console.log(text);
-this.options={
-text:text,
-locale:"en-US",
-rate:0.5
-}
-this.tts.speak(this.options)
+
+this.tts.speak({text:text,
+locale:toLang})
   .then(() => console.log('Success'))
   .catch((reason: any) => console.log(reason));
 }
-}
+} 

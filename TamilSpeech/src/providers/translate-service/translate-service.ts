@@ -14,7 +14,7 @@ export class TranslateServiceProvider {
   constructor(public http: Http) {
     console.log('Hello TranslateServiceProvider Provider');
   }
-  load(reqString: string) {
+  load(reqString: string, toLang:string ) {
     
     let options: RequestOptions;
     let headers: Headers = new Headers();
@@ -22,7 +22,7 @@ export class TranslateServiceProvider {
     //headers.append('content-type', 'application/json; charset=utf-8');
     let params: URLSearchParams = new URLSearchParams();
     params.set('text', reqString);
-    params.set('to', "en-IN");
+    params.set('to', "fr-FR");
     params.set('from', "hi-IN");
     options = new RequestOptions({
       headers: headers
@@ -37,11 +37,13 @@ export class TranslateServiceProvider {
 
     //https://translate.googleapis.com/translate_a/single?client=gtx&sl="  + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(sourceText)
     return new Promise(resolve => {
-      this.http.get("http://www.transltr.org/api/translate?text=" + reqString + "&from=hi-IN&to=en-US", options)
+     // this.http.get("http://www.transltr.org/api/translate?text=" + reqString + "&from=hi-IN&to="+toLang, options)
+     this.http.get("https://translate.googleapis.com/translate_a/single?client=gtx&sl=hi-IN&tl=" + toLang + "&dt=t&q=" + encodeURI(reqString), options)
         .map(res => res.json())
         .subscribe(subdata => {
-          this.data = subdata;
-          resolve(subdata.translationText);
+          this.data = subdata[0][0][0];
+          resolve(subdata[0][0][0])
+          //resolve(subdata.translationText);
         });
     });
   }
